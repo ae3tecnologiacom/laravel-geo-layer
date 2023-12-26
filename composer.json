@@ -1,5 +1,5 @@
 {
-    "name": "tobias/laravel-geo",
+    "name": "ae3/laravel-geo-layer",
     "description": "Biblioteca para converter endereços em coordenadas geográficas (latitude e longitude) e vice-versa.",
     "type": "project",
     "license": "MIT",
