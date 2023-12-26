@@ -37,8 +37,16 @@ class GeocodingService implements GeocodingServiceContract
      */
     public function getCoordinatesForAddress(string $address): GeocodingResponseData
     {
+        $response = $this->geocoder->getCoordinatesForAddress($address);
+
+        $viewport = array_key_exists('viewport', $response)
+            ? get_object_vars($response['viewport'])
+            : [];
+
+        $response['viewport'] = $viewport;
+
         return GeocodingResponseData::from(
-            $this->geocoder->getCoordinatesForAddress($address)
+            $response
         );
     }
 
