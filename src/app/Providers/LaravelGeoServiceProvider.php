@@ -2,6 +2,8 @@
 
 namespace Ae3\LaravelGeoLayer\app\Providers;
 
+use Ae3\LaravelGeoLayer\app\Services\Contracts\GeocodingServiceContract;
+use Ae3\LaravelGeoLayer\app\Services\GeocodingService;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelGeoServiceProvider extends ServiceProvider
@@ -28,5 +30,7 @@ class LaravelGeoServiceProvider extends ServiceProvider
                 __DIR__ . '/../../config/config.php' => config_path('laravel-geo-layer.php'),
             ], 'config');
         }
+
+        $this->app->bind(GeocodingServiceContract::class, GeocodingService::class);
     }
 }
