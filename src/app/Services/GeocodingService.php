@@ -56,10 +56,20 @@ class GeocodingService implements GeocodingServiceContract
      * @param float $latitude The latitude of the coordinates.
      * @param float $longitude The longitude of the coordinates.
      *
-     * @return array The address information for the given coordinates.
+     * @return GeocodingResponseData The address information for the given coordinates.
      */
-    public function getAddressForCoordinates(float $latitude, float $longitude): array
+    public function getAddressForCoordinates(float $latitude, float $longitude): GeocodingResponseData
     {
-        return $this->geocoder->getAddressForCoordinates($latitude, $longitude);
+        $response = $this->geocoder->getAddressForCoordinates($latitude, $longitude);
+
+        $viewport = array_key_exists('viewport', $response)
+            ? get_object_vars($response['viewport'])
+            : [];
+
+        $response['viewport'] = $viewport;
+
+        return GeocodingResponseData::from(
+            $response
+        );
     }
 }

@@ -16,9 +16,12 @@ interface GeocodingServiceContract
     public function getCoordinatesForAddress(string $address): GeocodingResponseData;
 
     /**
-     * @param float $latitude
-     * @param float $longitude
-     * @return array
+     * Retrieves the address for the given coordinates.
+     *
+     * @param float $latitude The latitude of the coordinates.
+     * @param float $longitude The longitude of the coordinates.
+     *
+     * @return GeocodingResponseData The address information for the given coordinates.
      */
-    public function getAddressForCoordinates(float $latitude, float $longitude): array;
+    public function getAddressForCoordinates(float $latitude, float $longitude): GeocodingResponseData;
 }
