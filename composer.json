@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": ">=7.4",
         "laravel/framework": ">=5.8",
         "spatie/geocoder": "^3.15"
     },
