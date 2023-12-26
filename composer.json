@@ -1,0 +1,35 @@
+{
+    "name": "tobias/laravel-geo",
+    "description": "Biblioteca para converter endereços em coordenadas geográficas (latitude e longitude) e vice-versa.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ae3\\LaravelGeoLayer\\": "src/",
+            "Ae3\\LaravelGeoLayer\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "José Tobias de Freitas Neto",
+            "email": "tobias@ae3tecnologia.com.br"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "laravel/framework": ">=5.8",
+        "spatie/geocoder": "^3.15"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ae3\\LaravelGeoLayer\\app\\Providers\\LaravelGeoServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "orchestra/testbench": "^6.41"
+    }
+}
