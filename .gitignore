@@ -1,5 +1,5 @@
 ### Laravel template
-/vendor
+/vendor/
 storage/*.key
 .env
 .idea
