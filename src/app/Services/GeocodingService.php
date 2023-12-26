@@ -2,6 +2,7 @@
 
 namespace Ae3\LaravelGeoLayer\app\Services;
 
+use Ae3\LaravelGeoLayer\app\DataTransferObjects\GeocodingResponseData;
 use Ae3\LaravelGeoLayer\app\Services\Contracts\GeocodingServiceContract;
 use GuzzleHttp\Client;
 use Spatie\Geocoder\Geocoder;
@@ -16,9 +17,10 @@ class GeocodingService implements GeocodingServiceContract
     /**
      * Constructs a new instance of the class.
      */
-    public function __construct()
+    public function __construct(
+        protected readonly Client $client
+    )
     {
-        $client = new Client();
         $this->geocoder = new Geocoder($client);
         $this->geocoder->setApiKey(config('laravel-geo-layer.key'));
         $this->geocoder->setRegion(config('laravel-geo-layer.region'));
@@ -31,11 +33,13 @@ class GeocodingService implements GeocodingServiceContract
      *
      * @param string $address The address to retrieve coordinates for.
      *
-     * @return array An array containing the latitude and longitude coordinates.
+     * @return GeocodingResponseData An array containing the latitude and longitude coordinates.
      */
-    public function getCoordinatesForAddress(string $address): array
+    public function getCoordinatesForAddress(string $address): GeocodingResponseData
     {
-        return $this->geocoder->getCoordinatesForAddress($address);
+        return GeocodingResponseData::from(
+            $this->geocoder->getCoordinatesForAddress($address)
+        );
     }
 
     /**
